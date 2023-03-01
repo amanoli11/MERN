@@ -1,0 +1,24 @@
+.companyName{
+    color: whitesmoke;
+    font-style: italic;
+    text-align: center;
+    font-size: 18px;
+    /* animation: floating 30s ease-in-out infinite; */
+    animation: flicker 30s infinite;
+}
+
+@keyframes flicker
+{
+0% {opacity:0;}
+9% {opacity:0;}
+10% {opacity:.5;}
+13% {opacity:0;}
+20% {opacity:.5;}
+25% {opacity:1;}
+}
+
+/* @keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 5px); }
+    100%   { transform: translate(0, -0px); }
+} */
