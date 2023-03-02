@@ -15,8 +15,10 @@ const ContentCard = (props: IContentCardProps) => {
       extra={buttons as ReactNode}
       style={{
         width: "100%",
-        height: "80vh",
+        height: "100%",
+        maxHeight: "80vh",
         overflow: "auto",
+        boxShadow: "0 0 3px #ccc",
       }}
     >
       {children}

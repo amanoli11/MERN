@@ -42,7 +42,7 @@ const POSPage = () => {
       </Col>
 
       <Col span={8}>
-        <ContentCard title="Orders">
+        <ContentCard title="ORDERS">
           <h1>Orders here</h1>
         </ContentCard>
       </Col>

@@ -17,7 +17,11 @@ const ItemCard = (props: IItemCardProps) => {
         />
       }
     >
-      <Meta title="Fried Chicken" description="Rs.100" />
+      <Meta
+        style={{ userSelect: "none" }}
+        title="Fried Chicken"
+        description="Rs.100"
+      />
     </Card>
   );
 };

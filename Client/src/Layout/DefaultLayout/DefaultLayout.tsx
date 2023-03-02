@@ -6,7 +6,7 @@ import {
   TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import type { MenuProps } from "antd";
+import { MenuProps, Switch } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import "./defaultLayout.css";
 
@@ -86,17 +86,24 @@ const DefaultLayout = (props: { children: any }) => {
             background: colorBgContainer,
             position: "sticky",
             zIndex: 1,
+            boxShadow: "0 0 3px #ccc",
+            borderRadius: 5,
           }}
         >
+          {/* <Switch
+            checkedChildren="Light"
+            unCheckedChildren="Dark"
+            defaultChecked
+          /> */}
           {/* <h3 style={{ margin: 0, padding: 0 }}>HEADER</h3> */}
         </Header>
         <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
+          {/* <Breadcrumb style={{ margin: "16px 0" }}>
+            <Breadcrumb.Item>POS</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
+          </Breadcrumb> */}
 
-          <>{props.children}</>
+          <div style={{ marginTop: "16px" }}>{props.children}</div>
         </Content>
 
         <Footer style={{ textAlign: "center", padding: 0 }}>
