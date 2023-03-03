@@ -90,11 +90,11 @@ const DefaultLayout = (props: { children: any }) => {
             borderRadius: 5,
           }}
         >
-          {/* <Switch
+          <Switch
             checkedChildren="Light"
             unCheckedChildren="Dark"
             defaultChecked
-          /> */}
+          />
           {/* <h3 style={{ margin: 0, padding: 0 }}>HEADER</h3> */}
         </Header>
         <Content style={{ margin: "0 16px" }}>

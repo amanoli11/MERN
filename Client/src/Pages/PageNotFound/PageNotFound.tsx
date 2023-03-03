@@ -1,5 +1,7 @@
+import { Typography } from "antd";
+
 const PageNotFound = () => {
-  return <h1>Page Not Found</h1>;
+  return <Typography>Page Not Found</Typography>;
 };
 
 export default PageNotFound;

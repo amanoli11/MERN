@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 const itemsRoutes = require("./routes/itemsRoutes");
 
-app.use("/api/items/", itemsRoutes);
+app.use("/", itemsRoutes);
 const port = 5000;
 
 app.get("/", (req, res) => res.send("Hello World"));

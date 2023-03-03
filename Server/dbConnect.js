@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const URL = "mongodb+srv://Aman:amanmongo@cluster0.kxqacw9.mongodb.net/POS";
+const URL = "mongodb://localhost:27017/AMS";
 
 mongoose.connect(URL);
 

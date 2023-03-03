@@ -4,12 +4,12 @@ import CreateButton from "../../Components/Buttons/CreateButton/CreateButton";
 import ItemCard from "../../Components/ItemCard/ItemCard";
 import TableComponent from "../../Components/Table/Table";
 
-const MenuCatgoriesList = () => {
+const ItemCatgoriesList = () => {
   return (
-    <ContentCard title="Menu Categories List" buttons={<CreateButton />}>
+    <ContentCard title="Item Categories List" buttons={<CreateButton />}>
       <TableComponent />
     </ContentCard>
   );
 };
 
-export default MenuCatgoriesList;
+export default ItemCatgoriesList;

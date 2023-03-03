@@ -1,6 +1,6 @@
 export enum StatusOptions {
-    Active = 1,
-    InActive = 2,
-    Deleted = 3,
-    Updated = 4
+    Active = 'Active',
+    InActive = 'InActive',
+    Deleted = 'Deleted',
+    Updated = "Updated"
 }
