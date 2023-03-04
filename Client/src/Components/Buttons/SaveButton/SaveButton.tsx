@@ -3,14 +3,14 @@ import { Button } from "antd";
 import { ISaveButtonProps } from "./ISaveButtonProps";
 
 const SaveButton = (props: ISaveButtonProps) => {
-  const { onClick } = props;
+  const { onClick, loading } = props;
   return (
     <Button
       size="small"
       type="primary"
       onClick={onClick}
       htmlType="submit"
-      // loading
+      loading={loading}
       icon={<SaveFilled />}
       style={{ background: "#179c3b" }}
     >

@@ -10,7 +10,7 @@ const CreateButton = () => {
     <Button
       size="small"
       type="primary"
-      onClick={() => navigate(`${pathname}/create`)}
+      onClick={() => navigate(`${pathname}create`)}
       icon={<PlusCircleOutlined />}
     >
       <>

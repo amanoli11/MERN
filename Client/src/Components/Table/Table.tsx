@@ -1,88 +1,88 @@
-import { EditOutlined } from "@ant-design/icons";
-import { Button, Table, Tag } from "antd";
-import { ColumnsType } from "antd/es/table";
+import { EditOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import { Button, message, Space, Table, Tag } from "antd";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ITableProps } from "./ITableProps";
 
-const TableComponent = (props: ITableProps) => {
-  //   const { columns } = props;
+const TableComponent = <T extends Object>(props: ITableProps<T>) => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [messageApi, contextHolder] = message.useMessage();
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [data, setData] = React.useState<T[]>([]);
 
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address:
-        "10 Downing Street 10 Downing Street 10 Downing Street 10 Downing Street 10 Downing Street",
-    },
-  ];
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      getItemCategories();
+    }, 2000);
+  }, []);
 
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
-    },
-    {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
-    },
-  ];
+  const getItemCategories = async () => {
+    await axios
+      .get("/getItemCategory")
+      .then(({ data }) => {
+        setData(data.data);
+        messageApi.success(data.message);
+      })
+      .catch((err) => messageApi.error(err.message))
+      .finally(() => setLoading(false));
+  };
 
-  const finalColumns = columns.map((col) => ({ ...col, ellipsis: true }), {
-    title: "Status",
-    dataIndex: "status",
-    align: "center",
-    render: () => {
-      return <Tag color="blue">Verified</Tag>;
-    },
-  });
-
+  const finalColumns = props.columns.map((x) => ({ ...x, ellipsis: true })); // manually adding ellipsis to all columns
   return (
-    <Table
-      tableLayout="fixed"
-      size="small"
-      dataSource={dataSource}
-      //   scroll={{ x: "calc(700px + 50%)", y: 240 }}
-      //   loading
-      columns={[
-        ...finalColumns,
-        {
-          ellipsis: true,
-          width: 100,
-          title: "Status",
-          dataIndex: "status",
-          align: "center",
-          render: () => {
-            return <Tag color="blue">Verified</Tag>;
+    <>
+      {contextHolder}
+      <Table
+        tableLayout="fixed"
+        size="small"
+        dataSource={data}
+        loading={loading}
+        rowKey="_id"
+        columns={[
+          ...finalColumns,
+          {
+            ellipsis: true,
+            width: 100,
+            title: "Status",
+            dataIndex: "status",
+            align: "center",
+            key: "status",
+            render: (column, row) => {
+              return <Tag color="blue">{column}</Tag>;
+            },
           },
-        },
-        {
-          width: 100,
-          ellipsis: true,
-          title: "Action",
-          dataIndex: "action",
-          align: "center",
-          fixed: "right",
-          render: () => {
-            return (
-              <Button size="small" shape="round" icon={<EditOutlined />} />
-            );
+          {
+            width: 100,
+            ellipsis: true,
+            title: "Action",
+            dataIndex: "action",
+            key: "action",
+            align: "center",
+            fixed: "right",
+            render: (col, row: any) => {
+              return (
+                <Space.Compact size="small">
+                  <Button
+                    shape="round"
+                    size="small"
+                    icon={<InfoCircleOutlined />}
+                    onClick={() => navigate(`${pathname}details/${row._id}`)}
+                  />
+                  <Button
+                    size="small"
+                    shape="round"
+                    icon={<EditOutlined />}
+                    onClick={() => navigate(`${pathname}edit/${row._id}`)}
+                  />
+                </Space.Compact>
+              );
+            },
           },
-        },
-      ]}
-    />
+        ]}
+      />
+    </>
   );
 };
 

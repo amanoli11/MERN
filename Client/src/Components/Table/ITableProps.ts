@@ -1,6 +1,6 @@
-import { ColumnsType } from "antd/es/table";
+import type { ColumnsType } from 'antd/es/table';
 
-export interface ITableProps{
-    columns?: ColumnsType
+export interface ITableProps<T>{
+    columns: ColumnsType<T>
     removeActionIcon?: boolean
 }

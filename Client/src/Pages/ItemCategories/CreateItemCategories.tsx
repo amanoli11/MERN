@@ -5,33 +5,44 @@ import SaveButton from "../../Components/Buttons/SaveButton/SaveButton";
 import ContentCard from "../../Components/ContentCard/ContentCard";
 import { StatusOptions } from "../../enums/StatusOptions";
 import { EnumToArray } from "../../Components/Utils/EnumToArray/EnumToArray";
-import { CreateItemCategoryModel } from "../../Models/CreateItemCategoryModel";
+import { CreateItemCategoryModel } from "../../Models/ItemCategoryModel/CreateItemCategoryModel";
 import axios from "axios";
+import { message } from "antd";
+import CustomForm from "../../Components/Form/CustomForm";
 
 const CreateItemCategories = () => {
   const { useForm, useWatch, Item, useFormInstance } = Form;
   const [form] = useForm<CreateItemCategoryModel>();
-  // const [requiredMark, setRequiredMarkType] = useState<RequiredMark>(true);
+  const [messageApi, contextHolder] = message.useMessage();
+  const [formSubmitting, setFormSubmitting] = useState<boolean>(false);
 
   const saveData = async (values: CreateItemCategoryModel) => {
-    console.log(values);
+    setFormSubmitting(true);
     await axios
       .post("/createItemCategory", values)
-      .then(() => alert("success"))
-      .catch((err) => alert(err.message));
+      .then((res) => {
+        messageApi.open({ type: "success", content: res.data });
+      })
+      .catch((err) => messageApi.open({ type: "error", content: err.message }))
+      .finally(() => setFormSubmitting(false));
   };
 
   return (
-    <Form
+    <CustomForm
       form={form}
       initialValues={{ status: "Active" }}
-      layout="inline"
       onFinish={saveData}
-      autoComplete="off"
+      disabled={formSubmitting}
     >
+      {contextHolder}
       <ContentCard
         title="Create Item Category"
-        buttons={<SaveButton onClick={() => console.log("submitted")} />}
+        buttons={
+          <SaveButton
+            onClick={() => console.log("submitted")}
+            loading={formSubmitting}
+          />
+        }
       >
         <Space align="start" size={24} wrap>
           <Item
@@ -56,7 +67,6 @@ const CreateItemCategories = () => {
             tooltip="This is a required field"
           >
             <Select
-              allowClear
               showSearch
               style={{ minWidth: 200 }}
               placeholder="Search to Select"
@@ -65,7 +75,7 @@ const CreateItemCategories = () => {
           </Item>
         </Space>
       </ContentCard>
-    </Form>
+    </CustomForm>
   );
 };
 

@@ -1,11 +1,11 @@
 const express = require("express");
-const dbConnect = require("./dbConnect");
+const dbConnect = require("../dbConnect");
 
 const app = express();
 app.use(express.json());
-const itemsRoutes = require("./routes/itemsRoutes");
+const routes = require("../routes/Routes");
 
-app.use("/", itemsRoutes);
+app.use("/", routes);
 const port = 5000;
 
 app.get("/", (req, res) => res.send("Hello World"));
