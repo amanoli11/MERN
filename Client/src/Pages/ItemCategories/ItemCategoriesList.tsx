@@ -7,7 +7,7 @@ import { ItemCategoryListModel } from "../../Models/ItemCategoryModel/ItemCatego
 const ItemCatgoriesList = () => {
   const columns = [
     {
-      title: "Item Category Name",
+      title: "Name",
       dataIndex: "name",
       key: "name",
     },

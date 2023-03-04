@@ -19,3 +19,13 @@ exports.getItemCategoriesById = async (req, res) => {
     res.status(400).json(err);
   }
 };
+
+exports.updateItemCategory = async (req, res) => {
+  try {
+    await ItemCategoryService.updateItemCategory(req);
+    res.status(200);
+    res.json({ data: null, message: "Item category updated successfully" });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};

@@ -5,15 +5,19 @@ import { useState } from "react";
 
 function App() {
   const { defaultAlgorithm, darkAlgorithm } = theme;
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const routes = PageRoutes();
+  // const { theme } = useContext(AppContext);
+
   return (
     <ConfigProvider
       theme={{
         algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
       }}
     >
-      <DefaultLayout>{routes}</DefaultLayout>
+      <DefaultLayout onThemeChange={(state) => setIsDarkMode(state)}>
+        {routes}
+      </DefaultLayout>
     </ConfigProvider>
   );
 }

@@ -7,9 +7,16 @@ import {
   UpOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { MenuProps, Switch, Typography } from "antd";
+import { ConfigProvider, MenuProps, Switch, Typography } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import "./defaultLayout.css";
+import {
+  configConsumerProps,
+  ConfigContext,
+  globalConfig,
+} from "antd/es/config-provider";
+import { defaultConfig } from "antd/es/theme/internal";
+import { readConfigFile } from "typescript";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -44,7 +51,10 @@ const items: MenuItem[] = [
   getItem("Files", "9", <FileOutlined />),
 ];
 
-const DefaultLayout = (props: { children: any }) => {
+const DefaultLayout = (props: {
+  onThemeChange: (state: boolean) => void;
+  children: any;
+}) => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -73,11 +83,11 @@ const DefaultLayout = (props: { children: any }) => {
           {collapsed ? "AMS" : "Aman Management System"}
         </Typography.Title>
         <Menu
-          // theme="dark"
+          theme="light"
           defaultSelectedKeys={["1"]}
           mode="inline"
           items={items}
-          // style={{ background: colorBgContainer }}
+          style={{ background: colorBgContainer }}
         />
       </Sider>
       <Layout className="site-layout">

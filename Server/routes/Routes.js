@@ -4,9 +4,11 @@ const router = express.Router();
 const {
   getAllItemCategories,
   getItemCategoriesById,
+  updateItemCategory,
 } = require("../controllers/ItemCategoryController");
 
 router.route("/getItemCategory").get(getAllItemCategories);
+router.route("/updateItemCategory/:id").post(updateItemCategory); // use patch for update
 router.route("/getItemCategory/:id").get(getItemCategoriesById);
 
 router.post("/createItemCategory", async (req, res) => {

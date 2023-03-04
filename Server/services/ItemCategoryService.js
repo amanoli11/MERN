@@ -7,3 +7,10 @@ exports.getAllItemCategories = async () => {
 exports.getItemCategoriesById = async (id) => {
   return await ItemCategoryModel.findById(id);
 };
+
+exports.updateItemCategory = async (value) => {
+  return await ItemCategoryModel.findOneAndUpdate(
+    { _id: value.params.id },
+    { ...value.body }
+  );
+};

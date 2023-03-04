@@ -68,13 +68,13 @@ const TableComponent = <T extends Object>(props: ITableProps<T>) => {
                     shape="round"
                     size="small"
                     icon={<InfoCircleOutlined />}
-                    onClick={() => navigate(`${pathname}details/${row._id}`)}
+                    onClick={() => navigate(`${pathname}/details/${row._id}`)}
                   />
                   <Button
                     size="small"
                     shape="round"
                     icon={<EditOutlined />}
-                    onClick={() => navigate(`${pathname}edit/${row._id}`)}
+                    onClick={() => navigate(`${pathname}/edit/${row._id}`)}
                   />
                 </Space.Compact>
               );

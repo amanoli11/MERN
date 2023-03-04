@@ -7,6 +7,16 @@
     animation: flicker 30s infinite;
 }
 
+.ant-menu-item-selected{
+    background-color: forestgreen !important;
+    color: white !important;
+}
+
+.ant-menu-submenu-selected > .ant-menu-submenu-title{
+    font-weight: bold !important;
+    color: forestgreen !important;
+}
+
 @keyframes flicker
 {
 0% {opacity:0;}

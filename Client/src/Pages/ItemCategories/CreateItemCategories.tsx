@@ -58,7 +58,7 @@ const CreateItemCategories = () => {
               },
             ]}
           >
-            <Input autoComplete="newPassword" placeholder="Name" />
+            <Input autoFocus autoComplete="newPassword" placeholder="Name" />
           </Item>
           <Item
             name="status"
