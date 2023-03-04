@@ -4,9 +4,10 @@ import {
   FileOutlined,
   PieChartOutlined,
   TeamOutlined,
+  UpOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { MenuProps, Switch } from "antd";
+import { MenuProps, Switch, Typography } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import "./defaultLayout.css";
 
@@ -52,29 +53,31 @@ const DefaultLayout = (props: { children: any }) => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
+        theme="light"
         breakpoint="lg"
         collapsible
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
         style={{
+          background: colorBgContainer,
           overflow: "auto",
           height: "100vh",
           position: "sticky",
           left: 0,
           top: 0,
           bottom: 0,
+          boxShadow: "0 0 3px #ccc",
         }}
       >
-        <u style={{ color: "whitesmoke" }}>
-          <h2 className="companyName">
-            {collapsed ? "AMS" : "Aman Management System"}
-          </h2>
-        </u>
+        <Typography.Title level={4} italic style={{ textAlign: "center" }}>
+          {collapsed ? "AMS" : "Aman Management System"}
+        </Typography.Title>
         <Menu
-          theme="dark"
+          // theme="dark"
           defaultSelectedKeys={["1"]}
           mode="inline"
           items={items}
+          // style={{ background: colorBgContainer }}
         />
       </Sider>
       <Layout className="site-layout">
@@ -86,8 +89,6 @@ const DefaultLayout = (props: { children: any }) => {
             background: colorBgContainer,
             position: "sticky",
             zIndex: 1,
-            boxShadow: "0 0 3px #ccc",
-            borderRadius: 5,
           }}
         >
           <Switch
@@ -98,10 +99,10 @@ const DefaultLayout = (props: { children: any }) => {
           {/* <h3 style={{ margin: 0, padding: 0 }}>HEADER</h3> */}
         </Header>
         <Content style={{ margin: "0 16px" }}>
-          {/* <Breadcrumb style={{ margin: "16px 0" }}>
+          <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>POS</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb> */}
+          </Breadcrumb>
 
           <div style={{ marginTop: "16px" }}>{props.children}</div>
         </Content>

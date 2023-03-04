@@ -3,9 +3,11 @@ const ItemCategoryModel = require("../models/ItemCategoryModel");
 const router = express.Router();
 const {
   getAllItemCategories,
+  getItemCategoriesById,
 } = require("../controllers/ItemCategoryController");
 
 router.route("/getItemCategory").get(getAllItemCategories);
+router.route("/getItemCategory/:id").get(getItemCategoriesById);
 
 router.post("/createItemCategory", async (req, res) => {
   try {

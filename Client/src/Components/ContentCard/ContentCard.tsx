@@ -4,10 +4,11 @@ import { IContentCardProps } from "./IContentCardProps";
 import "./ContentCard.css";
 
 const ContentCard = (props: IContentCardProps) => {
-  const { title, subTitle, buttons, children } = props;
+  const { title, loading, buttons, children } = props;
 
   return (
     <Card
+      loading={loading}
       className="contentCard"
       size="small"
       title={title}

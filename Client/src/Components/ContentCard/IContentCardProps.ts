@@ -5,4 +5,5 @@ export interface IContentCardProps {
     subTitle?: string
     buttons?: ReactElement
     children: ReactElement
+    loading?: boolean
 }

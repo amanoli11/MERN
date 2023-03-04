@@ -1,6 +1,8 @@
 import { useRoutes } from "react-router-dom";
 import CreateItem from "../Pages/Item/CreateItem";
 import CreateItemCategories from "../Pages/ItemCategories/CreateItemCategories";
+import EditItemCategory from "../Pages/ItemCategories/EditItemCategory";
+import ItemCategoriesDetails from "../Pages/ItemCategories/ItemCategoriesDetails";
 import ItemCatgoriesList from "../Pages/ItemCategories/ItemCategoriesList";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import POSPage from "../Pages/POS/POS";
@@ -15,6 +17,8 @@ export const PageRoutes = () => {
     // Menu Categories
     { path: "/itemCategory", element: <ItemCatgoriesList /> },
     { path: "/itemCategory/create", element: <CreateItemCategories /> },
+    { path: "/itemCategory/details/:id", element: <ItemCategoriesDetails /> },
+    { path: "/itemCategory/edit/:id", element: <EditItemCategory /> },
 
     { path: "/item/create", element: <CreateItem /> },
   ]);
