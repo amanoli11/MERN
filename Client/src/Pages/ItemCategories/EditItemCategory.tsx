@@ -6,10 +6,10 @@ import ContentCard from "../../Components/ContentCard/ContentCard";
 import CustomForm from "../../Components/Form/CustomForm";
 import { EnumToArray } from "../../Components/Utils/EnumToArray/EnumToArray";
 import { StatusOptions } from "../../enums/StatusOptions";
-import { CreateItemCategoryModel } from "../../Models/ItemCategoryModel/CreateItemCategoryModel";
-import { ItemCategoryListModel } from "../../Models/ItemCategoryModel/ItemCategoryListModel";
+import { CreateItemCategoryModel } from "../../Models/CreateItemCategoryModel";
 import { useEffect } from "react";
 import UpdateButton from "../../Components/Buttons/UpdateButton/UpdateButton";
+import { ItemCategoryListModel } from "../../Models/ItemCategoryListModel";
 
 const EditItemCategory = () => {
   const params = useParams();

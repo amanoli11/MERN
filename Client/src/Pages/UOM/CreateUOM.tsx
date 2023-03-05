@@ -1,28 +1,33 @@
-import { useState } from "react";
-import { Form, Input, Select, Space } from "antd";
+import { Space, Input, Select, Form, message } from "antd";
 import SaveButton from "../../Components/Buttons/SaveButton/SaveButton";
 import ContentCard from "../../Components/ContentCard/ContentCard";
-import { StatusOptions } from "../../enums/StatusOptions";
-import { EnumToArray } from "../../Components/Utils/EnumToArray/EnumToArray";
-import { CreateItemCategoryModel } from "../../Models/CreateItemCategoryModel";
-import axios from "axios";
-import { message } from "antd";
 import CustomForm from "../../Components/Form/CustomForm";
+import { EnumToArray } from "../../Components/Utils/EnumToArray/EnumToArray";
+import { StatusOptions } from "../../enums/StatusOptions";
+import { useState } from "react";
+import { CreateUOMModel } from "../../Models/UOMModel";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const CreateItemCategories = () => {
-  const { useForm, useWatch, Item, useFormInstance } = Form;
-  const [form] = useForm<CreateItemCategoryModel>();
+const CreateUOM = () => {
+  const { useForm, Item } = Form;
+  const [form] = useForm<CreateUOMModel>();
   const [messageApi, contextHolder] = message.useMessage();
   const [formSubmitting, setFormSubmitting] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const saveData = async (values: CreateItemCategoryModel) => {
+  const saveData = async (values: CreateUOMModel) => {
     setFormSubmitting(true);
     await axios
-      .post("/createItemCategory", values)
+      .post("/uom", values)
       .then((res) => {
-        messageApi.open({ type: "success", content: res.data });
+        messageApi.open({ type: "success", content: res.data.message });
+        navigate("/uom");
       })
-      .catch((err) => messageApi.open({ type: "error", content: err.message }))
+      .catch((err) => {
+        console.log(err.response);
+        messageApi.open({ type: "error", content: err.message });
+      })
       .finally(() => setFormSubmitting(false));
   };
 
@@ -35,25 +40,19 @@ const CreateItemCategories = () => {
     >
       {contextHolder}
       <ContentCard
-        title="Create Item Category"
-        buttons={
-          <SaveButton
-            onClick={() => console.log("submitted")}
-            loading={formSubmitting}
-          />
-        }
+        title="Create UOM"
+        buttons={<SaveButton loading={formSubmitting} />}
       >
         <Space align="start" size={24} wrap>
           <Item
             label="Name"
             name="name"
             required
-            tooltip="This is a required field"
             rules={[
-              { required: true, message: "Missing Item Category" },
+              { required: true, message: "Missing UOM name" },
               {
                 max: 100,
-                message: "Item category cannot be more than 100 characters",
+                message: "UOM name cannot be more than 100 characters",
               },
             ]}
           >
@@ -78,4 +77,4 @@ const CreateItemCategories = () => {
   );
 };
 
-export default CreateItemCategories;
+export default CreateUOM;

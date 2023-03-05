@@ -3,8 +3,9 @@ import CreateButton from "../../Components/Buttons/CreateButton/CreateButton";
 import TableComponent from "../../Components/Table/Table";
 import { ColumnsType } from "antd/es/table";
 import { ItemCategoryListModel } from "../../Models/ItemCategoryListModel";
+import { UOMListModel } from "../../Models/UOMModel";
 
-const ItemCatgoriesList = () => {
+const UOMList = () => {
   const columns = [
     {
       title: "Name",
@@ -16,16 +17,13 @@ const ItemCatgoriesList = () => {
       dataIndex: "createdAt",
       key: "createdAt",
     },
-  ] as ColumnsType<ItemCategoryListModel>;
+  ] as ColumnsType<UOMListModel>;
 
   return (
-    <ContentCard title="Item Categories List" buttons={<CreateButton />}>
-      <TableComponent<ItemCategoryListModel>
-        columns={columns}
-        featureName="getItemCategory"
-      />
+    <ContentCard title="UOM List" buttons={<CreateButton />}>
+      <TableComponent columns={columns} featureName="uom" />
     </ContentCard>
   );
 };
 
-export default ItemCatgoriesList;
+export default UOMList;

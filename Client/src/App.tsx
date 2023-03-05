@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function App() {
   const { defaultAlgorithm, darkAlgorithm } = theme;
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const routes = PageRoutes();
   // const { theme } = useContext(AppContext);
 

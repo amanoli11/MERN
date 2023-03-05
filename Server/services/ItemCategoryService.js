@@ -1,7 +1,7 @@
 const ItemCategoryModel = require("../models/ItemCategoryModel");
 
 exports.getAllItemCategories = async () => {
-  return await ItemCategoryModel.find();
+  return await ItemCategoryModel.find().sort({ createdAt: -1 });
 };
 
 exports.getItemCategoriesById = async (id) => {

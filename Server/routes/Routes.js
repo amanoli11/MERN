@@ -7,10 +7,16 @@ const {
   updateItemCategory,
 } = require("../controllers/ItemCategoryController");
 
+const { createUOM, getAllUom } = require("../controllers/UomController");
+
+// UOM
+router.route("/uom").get(getAllUom).post(createUOM);
+// router.route('/uom/:id').get(getUOMById).post(createUOM)
+
+// Item Category
 router.route("/getItemCategory").get(getAllItemCategories);
 router.route("/updateItemCategory/:id").post(updateItemCategory); // use patch for update
 router.route("/getItemCategory/:id").get(getItemCategoriesById);
-
 router.post("/createItemCategory", async (req, res) => {
   try {
     const newItem = new ItemCategoryModel(req.body);

@@ -14,14 +14,12 @@ const TableComponent = <T extends Object>(props: ITableProps<T>) => {
 
   useEffect(() => {
     setLoading(true);
-    setTimeout(() => {
-      getItemCategories();
-    }, 2000);
+    getItemCategories();
   }, []);
 
   const getItemCategories = async () => {
     await axios
-      .get("/getItemCategory")
+      .get(`/${props.featureName}`)
       .then(({ data }) => {
         setData(data.data);
         messageApi.success(data.message);
@@ -35,6 +33,12 @@ const TableComponent = <T extends Object>(props: ITableProps<T>) => {
     <>
       {contextHolder}
       <Table
+        pagination={{
+          size: "small",
+          simple: true,
+          defaultCurrent: 1,
+          defaultPageSize: 10,
+        }}
         tableLayout="fixed"
         size="small"
         dataSource={data}

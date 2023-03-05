@@ -5,7 +5,7 @@ import ContentCard from "../../Components/ContentCard/ContentCard";
 import { useEffect } from "react";
 import axios from "axios";
 import React from "react";
-import { ItemCategoryListModel } from "../../Models/ItemCategoryModel/ItemCategoryListModel";
+import { ItemCategoryListModel } from "../../Models/ItemCategoryListModel";
 
 const ItemCategoriesDetails = () => {
   const params = useParams();

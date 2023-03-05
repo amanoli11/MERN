@@ -6,6 +6,8 @@ import ItemCategoriesDetails from "../Pages/ItemCategories/ItemCategoriesDetails
 import ItemCatgoriesList from "../Pages/ItemCategories/ItemCategoriesList";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import POSPage from "../Pages/POS/POS";
+import CreateUOM from "../Pages/UOM/CreateUOM";
+import UOMList from "../Pages/UOM/UOMList";
 
 export const PageRoutes = () => {
   let routes = useRoutes([
@@ -19,6 +21,9 @@ export const PageRoutes = () => {
     { path: "/itemCategory/create", element: <CreateItemCategories /> },
     { path: "/itemCategory/details/:id", element: <ItemCategoriesDetails /> },
     { path: "/itemCategory/edit/:id", element: <EditItemCategory /> },
+
+    { path: "/uom", element: <UOMList /> },
+    { path: "/uom/create", element: <CreateUOM /> },
 
     { path: "/item/create", element: <CreateItem /> },
   ]);
