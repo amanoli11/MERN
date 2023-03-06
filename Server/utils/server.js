@@ -1,12 +1,13 @@
 const express = require("express");
 const dbConnect = require("../dbConnect");
+const errorHandler = require("../helper/errorHandler");
 
 const app = express();
 app.use(express.json());
+
 const routes = require("../routes/Routes");
-
 app.use("/", routes);
-const port = 5000;
+app.use(errorHandler);
 
-app.get("/", (req, res) => res.send("Hello World"));
-app.listen(port, () => console.log(`Example app listening at port ${port}!`));
+const port = 5000;
+app.listen(port);

@@ -8,9 +8,17 @@ const {
 } = require("../controllers/ItemCategoryController");
 
 const { createUOM, getAllUom } = require("../controllers/UomController");
+const TryCatchHandler = require("../helper/tryCatchHandler");
+const {
+  uomValidation,
+  uomValidationResult,
+} = require("../validations/uom/uomValidation");
 
 // UOM
-router.route("/uom").get(getAllUom).post(createUOM);
+router
+  .route("/uom")
+  .get(TryCatchHandler(getAllUom))
+  .post(uomValidation, uomValidationResult, TryCatchHandler(createUOM));
 // router.route('/uom/:id').get(getUOMById).post(createUOM)
 
 // Item Category
