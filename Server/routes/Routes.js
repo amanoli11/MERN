@@ -19,7 +19,7 @@ router
   .route("/uom")
   .get(TryCatchHandler(getAllUom))
   .post(uomValidation, uomValidationResult, TryCatchHandler(createUOM));
-// router.route('/uom/:id').get(getUOMById).post(createUOM)
+// router.route("/uom/:id").get(getUOMById).post(createUOM);
 
 // Item Category
 router.route("/getItemCategory").get(getAllItemCategories);
