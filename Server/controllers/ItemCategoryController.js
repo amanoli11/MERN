@@ -1,5 +1,15 @@
 const ItemCategoryService = require("../services/ItemCategoryService");
 
+exports.getPaginatedItemCategory = async (req, res) => {
+  const paginatedItemCategory =
+    await ItemCategoryService.getPaginatedItemCategory(req);
+  res.status(200);
+  res.json({
+    ...paginatedItemCategory,
+    message: "Item category fetched successfully",
+  });
+};
+
 exports.getAllItemCategories = async (req, res) => {
   try {
     const items = await ItemCategoryService.getAllItemCategories();

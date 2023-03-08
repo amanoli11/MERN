@@ -1,5 +1,10 @@
 const express = require("express");
-const { getAllUom, createUOM } = require("../controllers/UomController");
+const {
+  getAllUom,
+  createUOM,
+  getPaginatedUom,
+  getUomById,
+} = require("../controllers/UomController");
 const TryCatchHandler = require("../helper/tryCatchHandler");
 const {
   uomValidation,
@@ -11,6 +16,10 @@ router
   .route("/")
   .get(TryCatchHandler(getAllUom))
   .post(uomValidation, uomValidationResult, TryCatchHandler(createUOM));
+
+router.route("/:id").get(TryCatchHandler(getUomById));
+
+router.route("/paginated").get(TryCatchHandler(getPaginatedUom));
 
 // router.route("/uom/:id").get(getUOMById).post(createUOM);
 
