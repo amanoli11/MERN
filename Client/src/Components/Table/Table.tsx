@@ -11,17 +11,27 @@ const TableComponent = <T extends Object>(props: ITableProps<T>) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [data, setData] = React.useState<T[]>([]);
+  const [currentPage, setCurrentPage] = React.useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+  const [totalRecords, setTotalRecords] = React.useState<number | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     setLoading(true);
     getItemCategories();
-  }, []);
+  }, [currentPage]);
 
   const getItemCategories = async () => {
     await axios
-      .get(`/${props.featureName}`)
+      .get(
+        `/${props.featureName}/paginated?page=${currentPage}&limit=${rowsPerPage}`
+      )
       .then(({ data }) => {
         setData(data.data);
+        setRowsPerPage(data.rowsPerPage);
+        setCurrentPage(data.currentPage);
+        setTotalRecords(data.totalRecords);
         messageApi.success(data.message);
       })
       .catch((err) => messageApi.error(err.message))
@@ -29,6 +39,7 @@ const TableComponent = <T extends Object>(props: ITableProps<T>) => {
   };
 
   const finalColumns = props.columns.map((x) => ({ ...x, ellipsis: true })); // manually adding ellipsis to all columns
+
   return (
     <>
       {contextHolder}
@@ -36,8 +47,15 @@ const TableComponent = <T extends Object>(props: ITableProps<T>) => {
         pagination={{
           size: "small",
           simple: true,
-          defaultCurrent: 1,
-          defaultPageSize: 10,
+          defaultCurrent: currentPage,
+          current: currentPage,
+          pageSize: rowsPerPage,
+          defaultPageSize: rowsPerPage,
+          total: totalRecords,
+          onChange(page, pageSize) {
+            setCurrentPage(page);
+            console.log(page, pageSize);
+          },
         }}
         tableLayout="fixed"
         size="small"

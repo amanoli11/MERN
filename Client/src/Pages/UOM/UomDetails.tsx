@@ -1,23 +1,20 @@
 import { Descriptions, message } from "antd";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import EditButton from "../../Components/Buttons/EditButton/EditButton";
 import ContentCard from "../../Components/ContentCard/ContentCard";
-import { useEffect } from "react";
-import axios from "axios";
-import React from "react";
-import { ItemCategoryListModel } from "../../Models/ItemCategoryListModel";
+import { UOMListModel } from "../../Models/UOMModel";
 
-const ItemCategoriesDetails = () => {
+const UomDetails = () => {
   const params = useParams();
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const [data, setData] = React.useState<ItemCategoryListModel>(
-    {} as ItemCategoryListModel
-  );
+  const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<UOMListModel>({} as UOMListModel);
   const [messageApi, contextHolder] = message.useMessage();
 
-  const getItemCategoriesDetails = async () => {
+  const getUomDetails = async () => {
     await axios
-      .get(`/itemCategory/${params.id}`)
+      .get(`/uom/${params.id}`)
       .then(({ data }) => {
         setData(data.data);
         messageApi.success(data.message);
@@ -28,7 +25,7 @@ const ItemCategoriesDetails = () => {
 
   useEffect(() => {
     setLoading(true);
-    getItemCategoriesDetails();
+    getUomDetails();
   }, []);
 
   return (
@@ -36,7 +33,7 @@ const ItemCategoriesDetails = () => {
       {contextHolder}
       <ContentCard
         loading={loading}
-        title="Item Category Details"
+        title="Uom Details"
         buttons={<EditButton />}
       >
         <Descriptions size="small" layout="horizontal">
@@ -51,4 +48,4 @@ const ItemCategoriesDetails = () => {
   );
 };
 
-export default ItemCategoriesDetails;
+export default UomDetails;

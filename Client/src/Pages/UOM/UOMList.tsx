@@ -2,7 +2,6 @@ import ContentCard from "../../Components/ContentCard/ContentCard";
 import CreateButton from "../../Components/Buttons/CreateButton/CreateButton";
 import TableComponent from "../../Components/Table/Table";
 import { ColumnsType } from "antd/es/table";
-import { ItemCategoryListModel } from "../../Models/ItemCategoryListModel";
 import { UOMListModel } from "../../Models/UOMModel";
 
 const UOMList = () => {

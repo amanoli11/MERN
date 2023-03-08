@@ -8,19 +8,22 @@ import { CreateItemCategoryModel } from "../../Models/CreateItemCategoryModel";
 import axios from "axios";
 import { message } from "antd";
 import CustomForm from "../../Components/Form/CustomForm";
+import { useNavigate } from "react-router-dom";
 
 const CreateItemCategories = () => {
   const { useForm, useWatch, Item, useFormInstance } = Form;
   const [form] = useForm<CreateItemCategoryModel>();
   const [messageApi, contextHolder] = message.useMessage();
   const [formSubmitting, setFormSubmitting] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const saveData = async (values: CreateItemCategoryModel) => {
     setFormSubmitting(true);
     await axios
-      .post("/createItemCategory", values)
+      .post("/itemCategory", values)
       .then((res) => {
         messageApi.open({ type: "success", content: res.data });
+        navigate("/itemCategory");
       })
       .catch((err) => messageApi.open({ type: "error", content: err.message }))
       .finally(() => setFormSubmitting(false));

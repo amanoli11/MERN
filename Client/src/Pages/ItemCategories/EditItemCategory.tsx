@@ -23,7 +23,7 @@ const EditItemCategory = () => {
 
   const getItemCategoriesDetails = async () => {
     await axios
-      .get(`/getItemCategory/${params.id}`)
+      .get(`/itemCategory/${params.id}`)
       .then(({ data }) => {
         setData(data.data);
         form.setFieldsValue({ name: data.data.name, status: data.data.status });

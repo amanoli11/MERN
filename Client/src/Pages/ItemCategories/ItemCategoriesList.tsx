@@ -22,7 +22,7 @@ const ItemCatgoriesList = () => {
     <ContentCard title="Item Categories List" buttons={<CreateButton />}>
       <TableComponent<ItemCategoryListModel>
         columns={columns}
-        featureName="getItemCategory"
+        featureName="itemCategory"
       />
     </ContentCard>
   );

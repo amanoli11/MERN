@@ -7,6 +7,7 @@ import ItemCatgoriesList from "../Pages/ItemCategories/ItemCategoriesList";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import POSPage from "../Pages/POS/POS";
 import CreateUOM from "../Pages/UOM/CreateUOM";
+import UomDetails from "../Pages/UOM/UomDetails";
 import UOMList from "../Pages/UOM/UOMList";
 
 export const PageRoutes = () => {
@@ -24,6 +25,7 @@ export const PageRoutes = () => {
 
     { path: "/uom", element: <UOMList /> },
     { path: "/uom/create", element: <CreateUOM /> },
+    { path: "/uom/details/:id", element: <UomDetails /> },
 
     { path: "/item/create", element: <CreateItem /> },
   ]);
