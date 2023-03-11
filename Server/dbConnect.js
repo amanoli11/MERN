@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
-const URL = "mongodb://localhost:27017/AMS";
+const dbConnect = () => {
+  mongoose.connect(process.env.MONGO_URI);
+};
 
-mongoose.connect(URL);
+module.exports = dbConnect;

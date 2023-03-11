@@ -11,6 +11,10 @@ exports.createUOM = async (req) => {
   });
 };
 
+exports.getUomById = async (id) => {
+  return await uomModel.findById(id);
+};
+
 exports.getPaginatedUom = async (req) => {
   const currentPage = Number(req.query.page) || 1;
   const rowsPerPage = Number(req.query.limit) || 10;

@@ -9,7 +9,7 @@ const TryCatchHandler = require("../helper/tryCatchHandler");
 const {
   uomValidation,
   uomValidationResult,
-} = require("../validations/uom/uomValidation");
+} = require("../validations/UomValidation");
 const router = express.Router();
 
 router
@@ -17,9 +17,9 @@ router
   .get(TryCatchHandler(getAllUom))
   .post(uomValidation, uomValidationResult, TryCatchHandler(createUOM));
 
-router.route("/:id").get(TryCatchHandler(getUomById));
-
 router.route("/paginated").get(TryCatchHandler(getPaginatedUom));
+
+router.route("/:id").get(TryCatchHandler(getUomById));
 
 // router.route("/uom/:id").get(getUOMById).post(createUOM);
 

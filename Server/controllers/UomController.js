@@ -7,8 +7,7 @@ exports.getAllUom = async (req, res) => {
 };
 
 exports.getUomById = async (req, res) => {
-  console.log("getting");
-  const uom = await UomService.getUomById();
+  const uom = await UomService.getUomById(req.params.id);
   res.status(200);
   res.json({ data: uom, message: "UOM fetched successfully" });
 };
