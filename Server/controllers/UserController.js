@@ -14,8 +14,13 @@ exports.login = async (req, res) => {
 
 exports.signup = async (req, res) => {
   const user = await UserService.signup(req);
+  const { password, ...rest } = user;
   // creating token
   const token = createToken(user._id);
   res.status(200);
-  res.json({ data: [], token, message: "User signed up successfully" });
+  res.json({
+    data: { ...rest },
+    token,
+    message: "User signed up successfully",
+  });
 };

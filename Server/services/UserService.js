@@ -6,7 +6,8 @@ exports.login = async (req) => {
     email: req.body.email,
   });
   if (!user) throw Error("Cannot find the user");
-  const matchPassword = compare(req.body.password, user.password);
+  const matchPassword = await compare(req.body.password, user.password);
+
   if (!matchPassword) throw Error("Incorrect password");
   return {
     _id: user._id,
