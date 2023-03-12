@@ -7,7 +7,15 @@ import {
   UpOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { ConfigProvider, MenuProps, Switch, Typography } from "antd";
+import {
+  Avatar,
+  ConfigProvider,
+  Divider,
+  Dropdown,
+  MenuProps,
+  Switch,
+  Typography,
+} from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import "./defaultLayout.css";
 import {
@@ -61,31 +69,51 @@ const DefaultLayout = (props: { children: any }) => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
-        theme="light"
         breakpoint="lg"
-        collapsible
-        collapsed={collapsed}
+        // collapsible
+        // collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
         style={{
-          background: colorBgContainer,
           overflow: "auto",
-          height: "100vh",
+          maxHeight: "100vh",
           position: "sticky",
           left: 0,
           top: 0,
           bottom: 0,
-          boxShadow: "0 0 3px #ccc",
         }}
       >
-        <Typography.Title level={4} italic style={{ textAlign: "center" }}>
+        <Typography.Title
+          level={4}
+          italic
+          style={{ textAlign: "center", color: "white" }}
+        >
           {collapsed ? "AMS" : "Aman Management System"}
         </Typography.Title>
+
+        {/* <Dropdown
+          placement="bottomRight"
+          arrow
+          menu={{ items }}
+          trigger={["click"]}
+        >
+          <Avatar
+            style={{
+              backgroundColor: "#00a2ae",
+              verticalAlign: "middle",
+              cursor: "pointer",
+              marginRight: 7,
+            }}
+            size="large"
+          >
+            User
+          </Avatar>
+        </Dropdown> */}
         <Menu
           theme="light"
           defaultSelectedKeys={["1"]}
           mode="inline"
           items={items}
-          style={{ background: colorBgContainer }}
+          // style={{ background: colorBgContainer }}
         />
       </Sider>
       <Layout className="site-layout">

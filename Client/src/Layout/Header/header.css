@@ -1,0 +1,6 @@
+.ant-layout-header{
+    border-radius: 10px !important;
+    margin: 0 10px !important;
+    align-items: center;
+    box-shadow: 0 0 3px #ccc;
+}

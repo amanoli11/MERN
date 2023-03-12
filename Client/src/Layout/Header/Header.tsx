@@ -2,6 +2,7 @@ import { Avatar, Col, Dropdown, MenuProps, Row, Switch, theme } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { Typography } from "antd";
 import { useNavigate } from "react-router-dom";
+import "./header.css";
 
 const LayoutHeader = () => {
   const {
@@ -52,13 +53,13 @@ const LayoutHeader = () => {
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "center",
+            columnGap: 10,
           }}
         >
           <Switch
             checkedChildren="Light"
             unCheckedChildren="Dark"
             defaultChecked
-            style={{ marginRight: 10 }}
           />
           <Dropdown menu={{ items }} trigger={["click"]}>
             <Avatar
@@ -66,6 +67,7 @@ const LayoutHeader = () => {
                 backgroundColor: "#00a2ae",
                 verticalAlign: "middle",
                 cursor: "pointer",
+                marginRight: 7,
               }}
               size="large"
             >

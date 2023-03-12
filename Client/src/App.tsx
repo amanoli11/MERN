@@ -8,7 +8,7 @@ import LoginSignup from "./Pages/LoginSignup/LoginSignup";
 
 function App() {
   const { defaultAlgorithm, darkAlgorithm } = theme;
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const routes = PageRoutes();
 
   return (

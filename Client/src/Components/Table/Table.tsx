@@ -32,7 +32,14 @@ const TableComponent = <T extends Object>(props: ITableProps<T>) => {
         setRowsPerPage(data.rowsPerPage);
         setCurrentPage(data.currentPage);
         setTotalRecords(data.totalRecords);
-        messageApi.success(data.message);
+        messageApi.open({
+          type: "success",
+          content: data.message,
+          style: {
+            marginTop: "9vh",
+          },
+        });
+        // messageApi.success(data.message);
       })
       .catch((err) => messageApi.error(err.message))
       .finally(() => setLoading(false));
