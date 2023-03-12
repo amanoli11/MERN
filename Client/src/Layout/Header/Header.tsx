@@ -23,6 +23,7 @@ const LayoutHeader = () => {
     {
       label: "Logout",
       key: "1",
+      danger: true,
       onClick: () => {
         localStorage.removeItem("userToken");
         navigate("/");
