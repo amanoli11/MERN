@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   DesktopOutlined,
   FileOutlined,
@@ -17,6 +17,7 @@ import {
 } from "antd/es/config-provider";
 import { defaultConfig } from "antd/es/theme/internal";
 import { readConfigFile } from "typescript";
+import LayoutHeader from "../Header/Header";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -51,10 +52,7 @@ const items: MenuItem[] = [
   getItem("Files", "9", <FileOutlined />),
 ];
 
-const DefaultLayout = (props: {
-  onThemeChange: (state: boolean) => void;
-  children: any;
-}) => {
+const DefaultLayout = (props: { children: any }) => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -91,23 +89,7 @@ const DefaultLayout = (props: {
         />
       </Sider>
       <Layout className="site-layout">
-        <Header
-          style={{
-            padding: 0,
-            top: 0,
-            margin: 0,
-            background: colorBgContainer,
-            position: "sticky",
-            zIndex: 1,
-          }}
-        >
-          <Switch
-            checkedChildren="Light"
-            unCheckedChildren="Dark"
-            defaultChecked
-          />
-          {/* <h3 style={{ margin: 0, padding: 0 }}>HEADER</h3> */}
-        </Header>
+        <LayoutHeader />
         <Content style={{ margin: "0 16px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>POS</Breadcrumb.Item>

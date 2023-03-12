@@ -1,14 +1,23 @@
+import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
-import CreateItem from "../Pages/Item/CreateItem";
-import CreateItemCategories from "../Pages/ItemCategories/CreateItemCategories";
-import EditItemCategory from "../Pages/ItemCategories/EditItemCategory";
-import ItemCategoriesDetails from "../Pages/ItemCategories/ItemCategoriesDetails";
-import ItemCatgoriesList from "../Pages/ItemCategories/ItemCategoriesList";
-import PageNotFound from "../Pages/PageNotFound/PageNotFound";
-import POSPage from "../Pages/POS/POS";
-import CreateUOM from "../Pages/UOM/CreateUOM";
-import UomDetails from "../Pages/UOM/UomDetails";
-import UOMList from "../Pages/UOM/UOMList";
+const CreateItemCategories = lazy(
+  () => import("./ItemCategories/CreateItemCategories")
+);
+const EditItemCategory = lazy(
+  () => import("./ItemCategories/EditItemCategory")
+);
+const ItemCategoriesDetails = lazy(
+  () => import("./ItemCategories/ItemCategoriesDetails")
+);
+const ItemCatgoriesList = lazy(
+  () => import("./ItemCategories/ItemCategoriesList")
+);
+const PageNotFound = lazy(() => import("./PageNotFound/PageNotFound"));
+const POSPage = lazy(() => import("./POS/POS"));
+const CreateUOM = lazy(() => import("./UOM/CreateUOM"));
+const UomDetails = lazy(() => import("./UOM/UomDetails"));
+const UOMList = lazy(() => import("./UOM/UOMList"));
+const CreateItem = lazy(() => import("./Item/CreateItem"));
 
 export const PageRoutes = () => {
   let routes = useRoutes([
