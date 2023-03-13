@@ -8,6 +8,7 @@ const createToken = (_id) => {
 exports.login = async (req, res) => {
   const user = await UserService.login(req);
   const token = createToken(user._id);
+  console.log(token);
   res.status(200);
   res.json({ data: user, token, message: `Welcome ${user.firstName}` });
 };
