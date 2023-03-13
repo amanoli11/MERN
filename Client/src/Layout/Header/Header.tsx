@@ -34,17 +34,24 @@ const LayoutHeader = () => {
   return (
     <Header
       style={{
-        padding: 0,
-        top: 0,
-        margin: 0,
         background: colorBgContainer,
-        position: "sticky",
-        zIndex: 1,
       }}
     >
-      <Row>
+      <Row style={{ display: "flex" }}>
         <Col span={20}>
-          <Typography.Title ellipsis level={4} style={{ marginLeft: 10 }}>
+          <Typography.Title
+            ellipsis
+            level={4}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: 0,
+              padding: 0,
+              top: 0,
+              bottom: 0,
+              marginLeft: 10,
+            }}
+          >
             Bhatbhateni Supermarket Pvt.Ltd
           </Typography.Title>
         </Col>
@@ -53,15 +60,9 @@ const LayoutHeader = () => {
           style={{
             display: "flex",
             justifyContent: "flex-end",
-            alignItems: "center",
             columnGap: 10,
           }}
         >
-          <Switch
-            checkedChildren="Light"
-            unCheckedChildren="Dark"
-            defaultChecked
-          />
           <Dropdown menu={{ items }} trigger={["click"]}>
             <Avatar
               style={{
@@ -70,7 +71,7 @@ const LayoutHeader = () => {
                 cursor: "pointer",
                 marginRight: 7,
               }}
-              size="large"
+              size="default"
             >
               User
             </Avatar>

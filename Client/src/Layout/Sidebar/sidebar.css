@@ -10,9 +10,6 @@
   color: white !important;
 }
 
-
-/* ant-menu-item ant-menu-item-selected ant-menu-item-only-child */
-
 .ant-layout-sider-trigger{
     background-color: #333333 !important;
     margin-bottom: 10px;
@@ -20,6 +17,7 @@
 }
 
 .ant-layout-sider{
+    box-shadow: 0 0 6px black !important;
     border-radius: 10px !important;
     /* background-color:  #007254 !important; */
     background-color: #333333 !important;
@@ -34,7 +32,8 @@
 }
 
 .ant-layout-has-sider{
-    padding: 10px !important;
+    box-shadow: 0 0 6px black !important;
+    padding: 7px !important;
     max-height: 100vh !important;
 }
 

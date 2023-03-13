@@ -21,7 +21,7 @@ const DefaultLayout = (props: { children: any }) => {
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
           </Breadcrumb>
 
-          <div style={{ marginTop: "16px" }}>{props.children}</div>
+          <div style={{ marginTop: "10px" }}>{props.children}</div>
         </Content>
 
         <Footer style={{ textAlign: "center", padding: 0 }}>

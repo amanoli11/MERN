@@ -1,6 +1,11 @@
-.ant-layout-header{
+.ant-layout > .ant-layout-header{
+    height: 37px !important;
+    max-height: 37px !important;
     border-radius: 10px !important;
     margin: 0 10px !important;
-    align-items: center;
     box-shadow: 0 0 3px #ccc;
+    z-index: 1 !important;
+    position: sticky !important;
+    top: 0 !important;
+    padding: 0 !important;
 }
