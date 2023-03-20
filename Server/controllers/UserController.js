@@ -8,9 +8,8 @@ const createToken = (_id) => {
 exports.login = async (req, res) => {
   const user = await UserService.login(req);
   const token = createToken(user._id);
-  console.log(token);
   res.status(200);
-  res.json({ data: user, token, message: `Welcome ${user.firstName}` });
+  res.json({ token, message: `Welcome ${user.firstName}` });
 };
 
 exports.signup = async (req, res) => {
@@ -24,4 +23,10 @@ exports.signup = async (req, res) => {
     token,
     message: "User signed up successfully",
   });
+};
+
+exports.getUserById = async (req, res) => {
+  const user = await UserService.getUserById(req.params.id);
+  res.status(200);
+  res.json({ data: user, message: "User data fetched successfully" });
 };

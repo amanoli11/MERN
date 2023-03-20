@@ -28,3 +28,7 @@ exports.signup = async (req) => {
     password: hashPassword,
   });
 };
+
+exports.getUserById = async (req, res) => {
+  return await userModel.find();
+};

@@ -7,7 +7,9 @@ const userRoute = require("./routes/UserRoutes");
 const uomRoute = require("./routes/uom-routes");
 const itemCategoryRoute = require("./routes/itemCategoryRoute");
 
+const cors = require("cors");
 const app = express();
+app.use(cors());
 app.use(express.json());
 dbConnect();
 

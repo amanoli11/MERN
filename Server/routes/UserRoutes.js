@@ -9,6 +9,8 @@ const {
   userLoginValidationResult,
 } = require("../validations/UserValidation");
 
+router.route("/").get(TryCatchHandler(UserController.getUserById));
+
 // login
 router
   .route("/login")
