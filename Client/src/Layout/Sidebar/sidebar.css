@@ -11,7 +11,8 @@
 }
 
 .ant-layout-sider-trigger{
-    background-color: #333333 !important;
+    /* background-color: #333333 !important; */
+    background-color: #252525 !important;
     margin-bottom: 10px;
     border-radius: 10px;
 }
@@ -20,12 +21,14 @@
     box-shadow: 0 0 6px black !important;
     border-radius: 10px !important;
     /* background-color:  #007254 !important; */
-    background-color: #333333 !important;
+    /* background-color: #333333 !important; */
+    background-color: #252525 !important;
     color:white !important;
 }
 
 .ant-menu {
-    background-color: #333333 !important;
+    background-color: #252525 !important;
+    /* background-color: #333333 !important; */
     /* background-color:  #007254 !important; */
     /* background-color: rgb(20, 20, 20) !important; */
     color: white;

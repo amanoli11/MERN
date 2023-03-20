@@ -2,7 +2,7 @@ import DefaultLayout from "./Layout/DefaultLayout/DefaultLayout";
 import { PageRoutes } from "./Pages/pageRoutes";
 import { ConfigProvider, theme, Button, Card } from "antd";
 import { Suspense, useState } from "react";
-import { AuthContextProvider } from "./Context/AuthContext";
+import { UserContextProvider } from "./Context/UserContext";
 import Signup from "./Pages/SignUp/Signup";
 import LoginSignup from "./Pages/LoginSignup/LoginSignup";
 
@@ -12,21 +12,23 @@ function App() {
   const routes = PageRoutes();
 
   return (
-    <AuthContextProvider>
-      {!localStorage.getItem("userToken") ? (
+    <>
+      {!sessionStorage.getItem("accessToken") ? (
         <LoginSignup />
       ) : (
-        <ConfigProvider
-          theme={{
-            algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
-          }}
-        >
-          <DefaultLayout>
-            <Suspense fallback="Loading...">{routes}</Suspense>
-          </DefaultLayout>
-        </ConfigProvider>
+        <UserContextProvider>
+          <ConfigProvider
+            theme={{
+              algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
+            }}
+          >
+            <DefaultLayout>
+              <Suspense fallback="Loading...">{routes}</Suspense>
+            </DefaultLayout>
+          </ConfigProvider>
+        </UserContextProvider>
       )}
-    </AuthContextProvider>
+    </>
   );
 }
 

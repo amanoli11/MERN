@@ -1,14 +1,30 @@
 import { Form, Input, Checkbox, Button, message } from "antd";
-import { useSignup } from "../../hooks/useSignup";
+import axios from "axios";
+import { error } from "console";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SignupModel } from "../../Models/SignupModel";
 
 const Signup = () => {
-  const { signup, error, loading } = useSignup();
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const handleSubmit = async (values: SignupModel) => {
-    await signup(values);
+    setLoading(true);
+    setError("");
+
+    await axios
+      .post("/user/signup", { ...values })
+      .then(({ data }) => {
+        // saving user token to session storage
+        sessionStorage.setItem("accessToken", JSON.stringify(data.token));
+        navigate("/");
+      })
+      .catch(({ response }) => setError(response.data.message))
+      .finally(() => setLoading(false));
   };
-  const [messageApi, contextHolder] = message.useMessage();
 
   {
     loading &&

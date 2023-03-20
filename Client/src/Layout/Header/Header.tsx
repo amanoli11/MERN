@@ -25,7 +25,7 @@ const LayoutHeader = () => {
       key: "1",
       danger: true,
       onClick: () => {
-        localStorage.removeItem("userToken");
+        sessionStorage.removeItem("accessToken");
         navigate("/");
       },
     },

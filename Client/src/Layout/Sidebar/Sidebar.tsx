@@ -5,7 +5,7 @@ import {
   TeamOutlined,
   FileOutlined,
 } from "@ant-design/icons";
-import { Menu, MenuProps, Typography } from "antd";
+import { Image, Menu, MenuProps, Typography } from "antd";
 import Sider from "antd/es/layout/Sider";
 import MenuItem from "antd/es/menu/MenuItem";
 import { useState } from "react";
@@ -61,13 +61,22 @@ const Sidebar = () => {
         bottom: 0,
       }}
     >
-      <Typography.Title
+      <Image
+        preview={false}
+        draggable={false}
+        alt="logo"
+        loading="lazy"
+        src={process.env.PUBLIC_URL + "/assets/IMSLogo.svg"}
+        onError={() => console.error("Logo not loaded")}
+        height={80}
+      />
+      {/* <Typography.Title
         level={4}
         italic
         style={{ textAlign: "center", color: "white" }}
       >
         {collapsed ? "AMS" : "Aman Management System"}
-      </Typography.Title>
+      </Typography.Title> */}
 
       <Menu defaultSelectedKeys={["1"]} mode="inline" items={items} />
     </Sider>
