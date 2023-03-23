@@ -17,7 +17,7 @@ export const UserContextProvider = ({ children }: any) => {
   useEffect(() => {
     api
       .GET()
-      .then(({ data }) => console.log(data))
+      .then(({ data }: any) => console.log(data))
       .catch((err) => console.log(err));
   }, []);
 

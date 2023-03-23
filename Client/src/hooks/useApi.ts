@@ -1,6 +1,7 @@
 import { message } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { DataResponse } from "../Models/DataResponse";
 
 const useApi = (controllerName: string) => {
   const URL = process.env.REACT_APP_API_URL;
@@ -17,17 +18,19 @@ const useApi = (controllerName: string) => {
     },
   });
 
-  const GET = async (url = "") => {
-    return await http
-      .get(url)
-      .then(({ data }) => {
-        message.success("Data fetched successfully");
-        return data;
-      })
-      .catch((err) => {
-        message.error(err.message);
-        return err;
-      });
+  const GET = <T>(url = "") => {
+    return new Promise<T>((resolve, reject) => {
+      http
+        .get(url)
+        .then((response) => {
+          message.success(response.data.message);
+          resolve(response.data);
+        })
+        .catch(({ response }) => {
+          message.error(response.data.message);
+          reject({ message: response.data.message });
+        });
+    });
   };
 
   const POST = async <T>(

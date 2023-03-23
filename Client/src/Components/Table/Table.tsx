@@ -3,6 +3,9 @@ import { Button, message, Space, Table, Tag } from "antd";
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import useApi from "../../hooks/useApi";
+import { GetListModel } from "../../Models/GetListModel";
+import { ItemCategoryListModel } from "../../Models/ItemCategoryListModel";
 import { ITableProps } from "./ITableProps";
 
 const TableComponent = <T extends Object>(props: ITableProps<T>) => {
@@ -22,21 +25,35 @@ const TableComponent = <T extends Object>(props: ITableProps<T>) => {
     getItemCategories();
   }, [currentPage]);
 
+  const api = useApi(props.featureName);
+
   const getItemCategories = async () => {
-    await axios
-      .get(
-        `/${props.featureName}/paginated?page=${currentPage}&limit=${rowsPerPage}`
-      )
-      .then(({ data }) => {
-        setData(data.data);
-        setRowsPerPage(data.rowsPerPage);
-        setCurrentPage(data.currentPage);
-        setTotalRecords(data.totalRecords);
-        messageApi.success(data.message);
-        // messageApi.success(data.message);
+    api
+      .GET<GetListModel>(`/paginated?page=${currentPage}&limit=${rowsPerPage}`)
+      .then((response) => {
+        console.log(response);
+        setData(response.data);
+        setRowsPerPage(response.rowsPerPage);
+        setCurrentPage(response.currentPage);
+        setTotalRecords(response.totalRecords);
       })
-      .catch((err) => messageApi.error(err.message))
+      .catch((err) => console.log(err))
       .finally(() => setLoading(false));
+
+    // await axios
+    //   .get(
+    //     `/${props.featureName}/paginated?page=${currentPage}&limit=${rowsPerPage}`
+    //   )
+    //   .then(({ data }) => {
+    //     setData(data.data);
+    //     setRowsPerPage(data.rowsPerPage);
+    //     setCurrentPage(data.currentPage);
+    //     setTotalRecords(data.totalRecords);
+    //     messageApi.success(data.message);
+    //     // messageApi.success(data.message);
+    //   })
+    //   .catch((err) => messageApi.error(err.message))
+    //   .finally(() => setLoading(false));
   };
 
   const finalColumns = props.columns.map((x) => ({ ...x, ellipsis: true })); // manually adding ellipsis to all columns
@@ -55,7 +72,6 @@ const TableComponent = <T extends Object>(props: ITableProps<T>) => {
           total: totalRecords,
           onChange(page, pageSize) {
             setCurrentPage(page);
-            console.log(page, pageSize);
           },
         }}
         tableLayout="fixed"

@@ -1,5 +1,7 @@
 import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
+import { ROLE } from "../enums/Roles";
+import Permission from "../Helper/Permission";
 const CreateItemCategories = lazy(
   () => import("./ItemCategories/CreateItemCategories")
 );
@@ -22,12 +24,21 @@ const CreateItem = lazy(() => import("./Item/CreateItem"));
 export const PageRoutes = () => {
   let routes = useRoutes([
     { path: "/dashboard", element: <POSPage /> },
+    { path: "/pagenotfound", element: <PageNotFound /> },
     { path: "*", element: <PageNotFound /> },
 
     { path: "/pos", element: <POSPage /> },
 
     // Menu Categories
-    { path: "/itemCategory", element: <ItemCatgoriesList /> },
+    {
+      path: "/itemCategory",
+      element: (
+        <Permission
+          roles={[ROLE.SalesPerson]}
+          children={<ItemCatgoriesList />}
+        />
+      ),
+    },
     { path: "/itemCategory/create", element: <CreateItemCategories /> },
     { path: "/itemCategory/details/:id", element: <ItemCategoriesDetails /> },
     { path: "/itemCategory/edit/:id", element: <EditItemCategory /> },
