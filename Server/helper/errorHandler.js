@@ -1,7 +1,5 @@
-const ErrorHandler = (error, req, res, next) => {
-  res
-    .status(error.status || 500)
-    .send({ message: error.message ?? "Something went wrong!" });
+exports.errorHandler = (statusCode, message, res) => {
+  return res.status(statusCode).send({
+    message: message,
+  });
 };
-
-module.exports = ErrorHandler;

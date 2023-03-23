@@ -14,6 +14,23 @@ const userSchema = mongoose.Schema({
     unique: [true, "User with this email already exists"],
   },
   password: { type: String, required: true },
+  role: {
+    type: String,
+    enum: [
+      "Admin",
+      "SalesPerson",
+      "PurchasingManager",
+      "SupplyChainManager",
+      "WarehouseManager",
+      "StoreManager",
+      "SalesManager",
+      "LogisticsManager",
+      "CustomerServiceRepresentative",
+      "Guest",
+    ],
+    default: "Guest",
+    required: true,
+  },
   createdAt: { type: Date, required: true, default: Date.now },
 });
 

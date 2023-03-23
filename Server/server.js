@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const errorHandler = require("./helper/errorHandler");
+const GlobalErrorHandler = require("./helper/globalErrorHandler");
 const dbConnect = require("./dbConnect");
 
 const userRoute = require("./routes/UserRoutes");
@@ -16,7 +16,7 @@ dbConnect();
 app.use("/user", userRoute);
 app.use("/uom", uomRoute);
 app.use("/itemCategory", itemCategoryRoute);
-app.use(errorHandler);
+app.use(GlobalErrorHandler);
 
 const port = process.env.PORT;
 app.listen(port);
