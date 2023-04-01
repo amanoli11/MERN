@@ -9,7 +9,7 @@ import { Image, Menu, MenuProps, Typography } from "antd";
 import Sider from "antd/es/layout/Sider";
 import MenuItem from "antd/es/menu/MenuItem";
 import { useState } from "react";
-import "./sidebar.css";
+// import "./sidebar.css";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -78,7 +78,12 @@ const Sidebar = () => {
         {collapsed ? "AMS" : "Aman Management System"}
       </Typography.Title> */}
 
-      <Menu defaultSelectedKeys={["1"]} mode="inline" items={items} />
+      <Menu
+        theme="dark"
+        defaultSelectedKeys={["1"]}
+        mode="inline"
+        items={items}
+      />
     </Sider>
   );
 };

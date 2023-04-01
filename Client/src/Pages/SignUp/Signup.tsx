@@ -1,9 +1,9 @@
 import { Form, Input, Checkbox, Button, message } from "antd";
 import axios from "axios";
-import { error } from "console";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SignupModel } from "../../Models/SignupModel";
+import { login } from "../../Resources/Storage/storage";
 
 const Signup = () => {
   const [error, setError] = useState<string>("");
@@ -19,7 +19,7 @@ const Signup = () => {
       .post("/user/signup", { ...values })
       .then(({ data }) => {
         // saving user token to session storage
-        sessionStorage.setItem("accessToken", JSON.stringify(data.token));
+        login(data.token);
         navigate("/");
       })
       .catch(({ response }) => setError(response.data.message))

@@ -2,7 +2,8 @@ import { Avatar, Col, Dropdown, MenuProps, Row, Switch, theme } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import "./header.css";
+import { UserOutlined } from "@ant-design/icons";
+// import "./header.css";
 
 const LayoutHeader = () => {
   const {
@@ -34,23 +35,17 @@ const LayoutHeader = () => {
   return (
     <Header
       style={{
+        height: 50,
         background: colorBgContainer,
+        padding: "0px 10px 0px 15px",
       }}
     >
       <Row style={{ display: "flex" }}>
         <Col span={20}>
           <Typography.Title
+            style={{ marginTop: 12, marginBottom: 10 }}
             ellipsis
             level={4}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              margin: 0,
-              padding: 0,
-              top: 0,
-              bottom: 0,
-              marginLeft: 10,
-            }}
           >
             Bhatbhateni Supermarket Pvt.Ltd
           </Typography.Title>
@@ -58,23 +53,19 @@ const LayoutHeader = () => {
         <Col
           span={4}
           style={{
+            height: 50,
             display: "flex",
+            flexDirection: "row",
             justifyContent: "flex-end",
-            columnGap: 10,
+            alignItems: "center",
           }}
         >
           <Dropdown menu={{ items }} trigger={["click"]}>
             <Avatar
-              style={{
-                backgroundColor: "#00a2ae",
-                verticalAlign: "middle",
-                cursor: "pointer",
-                marginRight: 7,
-              }}
+              style={{ cursor: "pointer" }}
               size="default"
-            >
-              User
-            </Avatar>
+              icon={<UserOutlined />}
+            />
           </Dropdown>
         </Col>
       </Row>

@@ -34,7 +34,7 @@ export const PageRoutes = () => {
       path: "/itemCategory",
       element: (
         <Permission
-          roles={[ROLE.SalesPerson]}
+          roles={[ROLE.SalesPerson, ROLE.SalesManager]}
           children={<ItemCatgoriesList />}
         />
       ),

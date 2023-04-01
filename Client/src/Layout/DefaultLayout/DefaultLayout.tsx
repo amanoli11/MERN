@@ -16,12 +16,12 @@ const DefaultLayout = (props: { children: any }) => {
       <Layout className="site-layout">
         <LayoutHeader />
         <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
+          <Breadcrumb style={{ margin: "5px 0" }}>
             <Breadcrumb.Item>POS</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
           </Breadcrumb>
 
-          <div style={{ marginTop: "10px" }}>{props.children}</div>
+          <div style={{ marginTop: "5px" }}>{props.children}</div>
         </Content>
 
         <Footer style={{ textAlign: "center", padding: 0 }}>

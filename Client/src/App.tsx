@@ -2,9 +2,10 @@ import DefaultLayout from "./Layout/DefaultLayout/DefaultLayout";
 import { PageRoutes } from "./Pages/pageRoutes";
 import { ConfigProvider, theme, Button, Card } from "antd";
 import { Suspense, useState } from "react";
-import { UserContextProvider } from "./Context/UserContext";
-import Signup from "./Pages/SignUp/Signup";
 import LoginSignup from "./Pages/LoginSignup/LoginSignup";
+import { Provider } from "react-redux";
+import { store } from "./Redux/Store/userStore";
+import { getAccessToken } from "./Resources/Storage/storage";
 
 function App() {
   const { defaultAlgorithm, darkAlgorithm } = theme;
@@ -12,23 +13,21 @@ function App() {
   const routes = PageRoutes();
 
   return (
-    <>
-      {!sessionStorage.getItem("accessToken") ? (
+    <Provider store={store}>
+      {!getAccessToken() ? (
         <LoginSignup />
       ) : (
-        <UserContextProvider>
-          <ConfigProvider
-            theme={{
-              algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
-            }}
-          >
-            <DefaultLayout>
-              <Suspense fallback="Loading...">{routes}</Suspense>
-            </DefaultLayout>
-          </ConfigProvider>
-        </UserContextProvider>
+        <ConfigProvider
+          theme={{
+            algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
+          }}
+        >
+          <DefaultLayout>
+            <Suspense fallback="Loading...">{routes}</Suspense>
+          </DefaultLayout>
+        </ConfigProvider>
       )}
-    </>
+    </Provider>
   );
 }
 

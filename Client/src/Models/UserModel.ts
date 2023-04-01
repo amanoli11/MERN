@@ -3,4 +3,5 @@ export interface UserModel {
   middleName: String;
   lastName: String;
   email: String;
+  role: string;
 }

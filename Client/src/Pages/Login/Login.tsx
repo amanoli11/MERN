@@ -1,7 +1,7 @@
 import { Form, Input, Checkbox, Button, message } from "antd";
 import { LoginModel } from "../../Models/LoginModel";
-import { useNavigate } from "react-router-dom";
 import useApi from "../../hooks/useApi";
+import { login, setUser } from "../../Resources/Storage/storage";
 
 const Login = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -16,9 +16,9 @@ const Login = () => {
 
     api
       .POST<LoginModel>("/login", { ...values }, { navigateTo: "/" })
-      .then(({ token }) => {
-        // saving user token to session storage
-        sessionStorage.setItem("accessToken", JSON.stringify(token));
+      .then(({ data: { _id, ...rest }, token }) => {
+        login(token);
+        setUser(rest);
       })
       .catch(({ response }) =>
         messageApi.open({
@@ -27,20 +27,6 @@ const Login = () => {
           content: response.data.message,
         })
       );
-    // await axios
-    //   .post("/user/login", { ...values })
-    //   .then(({ data }) => {
-    //     // saving user token to session storage
-    //     sessionStorage.setItem("accessToken", JSON.stringify(data.token));
-    //     navigate("/");
-    //   })
-    //   .catch(({ response }) =>
-    //     messageApi.open({
-    //       key: "loadingStatus",
-    //       type: "error",
-    //       content: response.data.message,
-    //     })
-    //   );
   };
 
   return (

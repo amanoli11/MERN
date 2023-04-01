@@ -2,6 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { DataResponse } from "../Models/DataResponse";
+import { getAccessToken } from "../Resources/Storage/storage";
 
 const useApi = (controllerName: string) => {
   const URL = process.env.REACT_APP_API_URL;
@@ -11,9 +12,7 @@ const useApi = (controllerName: string) => {
     baseURL: `${URL}/${controllerName}`,
     timeout: 6000,
     headers: {
-      Authorization: `Bearer ${
-        sessionStorage.getItem("accessToken") ?? undefined
-      }`,
+      Authorization: `Bearer ${getAccessToken()}`,
       // BranchId: `${user?.branchId ?? localStorage.getItem('branchId')}`
     },
   });
